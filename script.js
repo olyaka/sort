@@ -8,11 +8,10 @@ var sort = function(array) {
 var list = document.querySelector(".list");
 
 input.addEventListener("keydown", function(e) {
-  input.addEventListener('keyup', function (evt) {
+  input.addEventListener("keyup", function(evt) {
     if (evt.currentTarget.value.match(/[^1-9]/i)) {
-        evt.currentTarget.value = evt.currentTarget.value.replace(/[^1-9]/i, "");
-      }
-    
+      evt.currentTarget.value = evt.currentTarget.value.replace(/[^1-9]/i, "");
+    }
   });
 
   var val = String.fromCharCode(e.keyCode || e.charCode);
@@ -22,8 +21,7 @@ input.addEventListener("keydown", function(e) {
     col.classList.add("column");
     col.innerText = String.fromCharCode(e.keyCode || e.charCode);
     col.style.height =
-      parseInt(String.fromCharCode(e.keyCode || e.charCode)) * 20 +
-      "px";
+      parseInt(String.fromCharCode(e.keyCode || e.charCode)) * 20 + "px";
     list.appendChild(col);
   }
 });
