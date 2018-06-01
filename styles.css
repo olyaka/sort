@@ -1,0 +1,15 @@
+.column {
+    float:left; 
+    margin: 10px;
+    width: 15px;
+    background-color: cadetblue;
+}
+
+.selected {
+    background-color:   rgb(7, 90, 90);
+    -moz-transition: transform 1s; 
+    -webkit-transition: transform 1s;  
+    -ms-transition: transform 1s;  
+    -o-transition: transform 1s;  
+    transition: transform 1s; 
+}
