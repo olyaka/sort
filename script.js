@@ -1,7 +1,19 @@
-'use strict';
+"use strict";
 
-var data = window.data.getData();
+(function() {
+  var data = window.data.getData();
 
-document.querySelector("button").addEventListener("click", function() {
+  var button = document.querySelector("button");
+
+  var onButtonClick = function() {
     window.sort.sortData(data);
-});
+    button.removeEventListener("click", onButtonClick);
+  };
+
+  button.addEventListener("click", onButtonClick);
+
+  window.script = {
+    button: button,
+    onButtonClick: onButtonClick
+  };
+})();
