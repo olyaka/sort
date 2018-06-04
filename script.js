@@ -5,9 +5,12 @@
 
   var button = document.querySelector("button");
 
+  var sorter = window.sort.createSorter(data);
+
   var onButtonClick = function() {
-    window.sort.sortData(data);
     button.removeEventListener("click", onButtonClick);
+    data = window.sort.sortData(sorter);
+    window.render.swap(data);
   };
 
   button.addEventListener("click", onButtonClick);
