@@ -1,16 +1,14 @@
 "use strict";
 
 (function() {
-  var data = window.data.getData();
+  window.data.getData();
 
   var button = document.querySelector("button");
 
-  var sorter = window.sort.createSorter(data);
-
   var onButtonClick = function() {
-    button.removeEventListener("click", onButtonClick);
-    data = window.sort.sortData(sorter);
-    window.render.swap(data);
+    var sorter = window.data.updateData();
+    sorter = window.sort.sortData(sorter);
+    window.render.swap(sorter);
   };
 
   button.addEventListener("click", onButtonClick);
