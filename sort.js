@@ -1,22 +1,25 @@
 "use strict";
 
 (function() {
-
-  var calcIndexes = function (array) {
-    var indexes = []
-      for (var i = 0; i < array.length; i++) {
-        indexes.push(i);
-      }
+  var calcIndexes = function(array) {
+    var indexes = [];
+    for (var i = 0; i < array.length; i++) {
+      indexes.push(i);
+    }
     return indexes;
-  }
+  };
 
   class Sorter {
     constructor(array) {
       this.array = array;
- 
+
       this.indexes = calcIndexes(array);
+
+      this.initInd = 0;
+
+      this.isSorted = false;
     }
-    update (array) {
+    update(array) {
       this.array = array;
 
       this.indexes = calcIndexes(array);
@@ -24,20 +27,29 @@
     next() {
       var array = this.array;
       var indexes = this.indexes;
-      
-      for (var i = 0; i < array.length - 1; i++) {
-        if (array[i + 1] < array[i]) {
-          var tmp = array[i + 1];
-          array[i + 1] = array[i];
-          array[i] = tmp;
 
-          var tmpInd = indexes[i + 1];
-          indexes[i + 1] = indexes[i];
-          indexes[i] = tmpInd;
-          break;
+      while (!this.isSorted) {
+        this.isSorted = true;
+        this.initInd = this.initInd === array.length - 1 ? 0 : this.initInd;
+
+        for (var i = this.initInd; i < array.length - 1; i++) {
+          if (array[i + 1] < array[i]) {
+            var tmp = array[i + 1];
+            array[i + 1] = array[i];
+            array[i] = tmp;
+
+            var tmpInd = indexes[i + 1];
+            indexes[i + 1] = indexes[i];
+            indexes[i] = tmpInd;
+            this.isSorted = false;
+            break;
+          }
         }
+
+        this.array = array;
+        return this;
       }
-      this.array = array;
+
       return this;
     }
   }
