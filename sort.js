@@ -24,11 +24,14 @@
 
       this.indexes = calcIndexes(array);
     }
+    getIndexes() {
+      return this.indexes;
+    }
     next() {
       var array = this.array;
       var indexes = this.indexes;
 
-      while (!this.isSorted) {
+      if (!this.isSorted) {
         this.isSorted = true;
         this.initInd = this.initInd === array.length - 1 ? 0 : this.initInd;
 
@@ -61,7 +64,7 @@
     },
 
     sortData: function(sorter) {
-      return sorter.next();
+      sorter.next();
     }
   };
 })();
