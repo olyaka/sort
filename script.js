@@ -7,8 +7,8 @@
 
   var onButtonClick = function() {
     var sorter = window.data.updateData();
-    sorter = window.sort.sortData(sorter);
-    window.render.swap(sorter);
+    window.sort.sortData(sorter);
+    window.render.rerender(sorter);
   };
 
   button.addEventListener("click", onButtonClick);
