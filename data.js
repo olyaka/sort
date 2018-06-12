@@ -14,14 +14,12 @@
       input.addEventListener("input", function(evt) {
         var inputValue = evt.currentTarget.value;
 
-        if (inputValue.match(/[^1-9]/i)) {
-          inputValue = inputValue.replace(/[^1-9]/i, "");
+        if (inputValue.match(/[\D|^0]/g)) {
+          evt.currentTarget.value = inputValue.replace(/[\D|^0]/g, "");
         } else {
           arr = [];
 
-          while (list.firstChild) {
-            list.removeChild(list.firstChild);
-          }
+          window.render.clear();
 
           for (var i = 0; i < inputValue.length; i++) {
             window.render.column(inputValue[i], i);
