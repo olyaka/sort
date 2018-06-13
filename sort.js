@@ -17,12 +17,16 @@
 
       this.initInd = 0;
 
+      this.lastInd = array.length - 1;
+
       this.isSorted = false;
     }
     update(array) {
       this.array = array;
 
       this.indexes = calcIndexes(array);
+
+      this.lastInd = array.length - 1;
     }
     getIndexes() {
       return this.indexes;
@@ -31,11 +35,15 @@
       var array = this.array;
       var indexes = this.indexes;
 
+      if (this.initInd === this.lastInd) {
+        this.initInd = 0;
+        this.lastInd--;
+      }
+
       if (!this.isSorted) {
         this.isSorted = true;
-        this.initInd = this.initInd === array.length - 1 ? 0 : this.initInd;
 
-        for (var i = this.initInd; i < array.length - 1; i++) {
+        for (var i = this.initInd; i < this.lastInd; i++) {
           if (array[i + 1] < array[i]) {
             var tmp = array[i + 1];
             array[i + 1] = array[i];
@@ -44,15 +52,19 @@
             var tmpInd = indexes[i + 1];
             indexes[i + 1] = indexes[i];
             indexes[i] = tmpInd;
+
             this.isSorted = false;
+            this.initInd = i + 1;
+
             break;
           }
+
+          if (i === this.lastInd - 1 && this.initInd !== 0 && this.isSorted) {
+            this.initInd = 0;
+            i = -1;
+          }
         }
-
-        this.array = array;
-        return this;
       }
-
       return this;
     }
   }
