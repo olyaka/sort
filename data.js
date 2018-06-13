@@ -3,13 +3,9 @@
 (function() {
   var arr = [];
 
-  var sorter = window.sort.createSorter(arr);
-
   window.data = {
     getData: function() {
       var input = document.querySelector("input");
-
-      var list = document.querySelector(".list");
 
       input.addEventListener("input", function(evt) {
         var inputValue = evt.currentTarget.value;
@@ -26,13 +22,11 @@
             arr.push(parseInt(inputValue[i]));
           }
         }
-
-        sorter.update(arr);
       });
     },
 
     updateData: function() {
-      return sorter;
+      return arr;
     }
   };
 })();
