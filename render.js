@@ -2,6 +2,7 @@
 
 (function() {
   var list = document.querySelector(".list");
+  var lastTimeout;
 
   window.render = {
     clear: function() {
@@ -26,11 +27,14 @@
           element.style.transform.replace(/[^-?\d+$]/g, "")
         );
 
-        element.classList.remove("selected");
-
         if (shift !== 0 && shift != transition) {
           element.classList.add("selected");
+
+          setTimeout(function() {
+            element.classList.remove("selected");
+          }, 1000);
         }
+
         element.style.transform = "translateX(" + shift + "px)";
       });
     }
